@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "./_components/Button";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 export default function Home() {
   return (
@@ -12,8 +13,14 @@ export default function Home() {
           Let&apos;s start a healthy life
         </p>
       </div>
-      <Link href="/workout">
-        <Button>Start Workout</Button>
+      <Link href="/workout" className="mt-5">
+        <Button className="py-3 group font-semibold" variant="bordered">
+          <Icon
+            icon="hugeicons:workout-stretching"
+            className="text-primary-950 text-lg group-hover:text-white"
+          />{" "}
+          Start Workout
+        </Button>
       </Link>
     </div>
   );
