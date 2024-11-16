@@ -19,7 +19,7 @@ const Navbar = () => {
       </ul>
       <div>
         <Link href="/login">
-          <Button>
+          <Button variant="secondary">
             <span>Login</span>
           </Button>
         </Link>

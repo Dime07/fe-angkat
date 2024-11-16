@@ -1,16 +1,23 @@
-import { HTMLAttributes, ReactNode } from "react";
+import clsx from "clsx";
+import { ComponentProps, ReactNode } from "react";
 
-const Button = ({
-  children,
-  ...props
-}: {
+interface IButton extends ComponentProps<"button"> {
   children: ReactNode;
-  props?: HTMLAttributes<HTMLButtonElement>;
-}) => {
+  variant?: "primary" | "secondary";
+}
+
+const Button = ({ children, variant = "primary", ...props }: IButton) => {
   return (
     <button
       {...props}
-      className="bg-slate-700 text-white px-3 py-0.5 rounded flex justify-center items-center text-sm"
+      className={clsx(
+        "text-white px-3 py-0.5 rounded flex justify-center items-center text-xs w-full",
+        {
+          "bg-primary-950": variant === "primary",
+          "bg-secondary-950": variant === "secondary",
+        },
+        props?.className
+      )}
     >
       {children}
     </button>
