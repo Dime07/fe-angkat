@@ -3,7 +3,7 @@ import Button from "../../Button";
 
 const Navbar = () => {
   return (
-    <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4">
+    <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">
       {/* //Todo : Replace logo with image */}
       <a href="/">Angkat</a>
       <ul className="flex gap-2 text-xs">
