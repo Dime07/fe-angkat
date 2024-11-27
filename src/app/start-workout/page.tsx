@@ -155,6 +155,11 @@ export default function StartWorkout() {
           className="w-full text-lg disabled:opacity-40"
           disabled={isPending}
         >
+          {isPending && (
+            <span className="animate-spin mr-2">
+              <Icon icon="proicons:spinner" />
+            </span>
+          )}
           Finish Workout
         </Button>
       </form>
