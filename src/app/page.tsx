@@ -14,7 +14,7 @@ export default function Home() {
           Let&apos;s start a healthy life
         </p>
       </div>
-      <Link href="/workout" className="mt-5">
+      <Link href="/start-workout" className="mt-5">
         <Button className="py-3 group font-semibold" variant="bordered">
           <Icon
             icon="hugeicons:workout-stretching"

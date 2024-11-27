@@ -5,7 +5,7 @@ import Timer from "../_components/Timer";
 import { createWorkout } from "./action";
 import Button from "../_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 
 interface IWorkout {
   workout: string;
@@ -14,6 +14,7 @@ interface IWorkout {
 }
 
 export default function StartWorkout() {
+  const [_state, formAction, isPending] = useActionState(createWorkout, null);
   const [workouts, setWorkouts] = useState<IWorkout[]>([
     {
       workout: "",
@@ -73,15 +74,15 @@ export default function StartWorkout() {
 
   return (
     <div className="flex flex-col gap-2 py-4 min-h-[calc(100vh-40px)] overflow-auto">
-      <Timer />
       <form
         action={(formData) => {
-          createWorkout(formData);
+          formAction(formData);
           resetWorkout();
         }}
         className="flex flex-col gap-3"
         name="workout"
       >
+        <Timer />
         {workouts.map((workout, i) => (
           <div
             className="grid grid-cols-[200px_200px_200px_1fr] items-end gap-2"
@@ -149,7 +150,11 @@ export default function StartWorkout() {
             </div>
           </div>
         ))}
-        <Button type="submit" className="w-full text-lg">
+        <Button
+          type="submit"
+          className="w-full text-lg disabled:opacity-40"
+          disabled={isPending}
+        >
           Finish Workout
         </Button>
       </form>

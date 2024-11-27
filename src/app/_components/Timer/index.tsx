@@ -18,9 +18,12 @@ const Timer = () => {
   }, []);
 
   return (
-    <p className="text-center text-2xl font-bold text-secondary-950">
-      {dayjs.duration(timeSpend, "seconds").format("HH:mm:ss")}
-    </p>
+    <>
+      <p className="text-center text-2xl font-bold text-secondary-950">
+        {dayjs.duration(timeSpend, "seconds").format("HH:mm:ss")}
+      </p>
+      <input type="hidden" name="timeSpend" value={timeSpend} />
+    </>
   );
 };
 
