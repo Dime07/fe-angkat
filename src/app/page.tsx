@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Button from "./_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import WorkoutCard from "./_components/Card/WorkoutCard";
 
 export default function Home() {
   return (
@@ -22,6 +23,11 @@ export default function Home() {
           Start Workout
         </Button>
       </Link>
+      <div className="space-y-3 mt-3">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <WorkoutCard key={i} />
+        ))}
+      </div>
     </div>
   );
 }
