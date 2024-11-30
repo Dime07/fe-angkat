@@ -17,6 +17,8 @@ export async function createWorkout(_prevState: unknown, formData: FormData) {
     });
   };
 
+  let redirectPath = "/";
+
   try {
     const payload = {
       name: formData.get("name"),
@@ -29,10 +31,13 @@ export async function createWorkout(_prevState: unknown, formData: FormData) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
-    return redirect("/");
-  } catch {
+    redirectPath = "/";
+  } catch (error) {
+    redirectPath = "/start-workout";
     return {
-      errorMessage: "Failed to create workout",
+      errorMessage: JSON.stringify(error),
     };
+  } finally {
+    redirect(redirectPath);
   }
 }

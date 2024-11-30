@@ -10,7 +10,7 @@ export default function Home() {
   const { workouts } = useGetWorkouts();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <div className="space-y-0.5 mt-5">
         <h1 className="text-2xl font-bold text-neutral-950">
           Welcome , Dimas 👋
