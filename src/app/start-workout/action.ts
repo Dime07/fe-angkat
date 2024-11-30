@@ -32,7 +32,7 @@ export async function createWorkout(_prevState: unknown, formData: FormData) {
     return redirect("/");
   } catch {
     return {
-      message: "Failed to create workout",
+      errorMessage: "Failed to create workout",
     };
   }
 }

@@ -5,7 +5,7 @@ import Timer from "../_components/Timer";
 import { createWorkout } from "./action";
 import Button from "../_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
 interface IWorkout {
   workout: string;
@@ -14,7 +14,7 @@ interface IWorkout {
 }
 
 export default function StartWorkout() {
-  const [_state, formAction, isPending] = useActionState(createWorkout, null);
+  const [state, formAction, isPending] = useActionState(createWorkout, null);
   const [workouts, setWorkouts] = useState<IWorkout[]>([
     {
       workout: "",
@@ -79,6 +79,12 @@ export default function StartWorkout() {
       return newWorkouts;
     });
   };
+
+  useEffect(() => {
+    if (state?.errorMessage) {
+      alert(state.errorMessage);
+    }
+  }, [state]);
 
   return (
     <div className="flex flex-col gap-2 py-4 min-h-[calc(100vh-40px)] overflow-auto">

@@ -1,9 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import Button from "./_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import WorkoutCard from "./_components/Card/WorkoutCard";
+import useGetWorkouts from "./hooks/useGetWorkouts";
 
 export default function Home() {
+  const { workouts } = useGetWorkouts();
+
   return (
     <div className="flex flex-col">
       <div className="space-y-0.5 mt-5">
@@ -24,7 +29,7 @@ export default function Home() {
         </Button>
       </Link>
       <div className="space-y-3 mt-3">
-        {Array.from({ length: 5 }).map((_, i) => (
+        {workouts.map((_, i) => (
           <WorkoutCard key={i} />
         ))}
       </div>
