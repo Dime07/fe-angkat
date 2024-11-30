@@ -56,6 +56,14 @@ export default function StartWorkout() {
     ]);
   };
 
+  const copyWorkout = (index: number) => {
+    setWorkouts((prev) => {
+      const newWorkouts = [...prev];
+      newWorkouts.splice(index, 0, newWorkouts[index]);
+      return newWorkouts;
+    });
+  };
+
   const handleOnChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     name: string,
@@ -110,30 +118,31 @@ export default function StartWorkout() {
               onChange={(e) => handleOnChange(e, "volume", i)}
             />
             <div className="flex gap-2">
+              <button
+                type="button"
+                className="size-7 flex items-center justify-center border rounded-full"
+                onClick={() => {
+                  copyWorkout(i);
+                }}
+              >
+                <Icon
+                  icon="solar:copy-bold"
+                  className="text-secondary-950 text-lg"
+                />
+              </button>
               {i === workouts.length - 1 && (
-                <>
-                  <button
-                    type="button"
-                    className="size-7 flex items-center justify-center border rounded-full"
-                  >
-                    <Icon
-                      icon="solar:copy-bold"
-                      className="text-secondary-950 text-lg"
-                    />
-                  </button>
-                  <button
-                    type="button"
-                    className="size-7 flex items-center justify-center border rounded-full"
-                    onClick={() =>
-                      addWorkout({ workout: "", reps: "", volume: "" })
-                    }
-                  >
-                    <Icon
-                      icon="ic:baseline-plus"
-                      className="text-secondary-950 text-lg"
-                    />
-                  </button>
-                </>
+                <button
+                  type="button"
+                  className="size-7 flex items-center justify-center border rounded-full"
+                  onClick={() =>
+                    addWorkout({ workout: "", reps: "", volume: "" })
+                  }
+                >
+                  <Icon
+                    icon="ic:baseline-plus"
+                    className="text-secondary-950 text-lg"
+                  />
+                </button>
               )}
               {workouts.length > 1 && (
                 <button
