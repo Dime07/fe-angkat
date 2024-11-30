@@ -98,6 +98,7 @@ export default function StartWorkout() {
           name="name"
           placeholder="eg: Chest Day"
           className="outline-none text-xl border-l-0 border-t-0 border-r-0 rounded-none"
+          required
         />
         {workouts.map((workout, i) => (
           <div
@@ -105,25 +106,28 @@ export default function StartWorkout() {
             key={i}
           >
             <Input
-              name={`workout[${i}]`}
+              name={`workout[]`}
               placeholder="eg: Push Up"
               label="Workout Name"
               value={workout.workout}
               onChange={(e) => handleOnChange(e, "workout", i)}
+              required
             />
             <Input
-              name={`reps[${i}]`}
+              name={`reps[]`}
               placeholder="eg: 8"
               label="Reps"
               value={workout.reps}
               onChange={(e) => handleOnChange(e, "reps", i)}
+              required
             />
             <Input
-              name={`volume[${i}]`}
+              name={`volume[]`}
               placeholder="eg: 12kg"
               label="Volume (kg)"
               value={workout.volume}
               onChange={(e) => handleOnChange(e, "volume", i)}
+              required
             />
             <div className="flex gap-2">
               <button
