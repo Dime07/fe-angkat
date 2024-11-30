@@ -10,4 +10,6 @@ export interface IWorkout {
   name: string;
   duration: number;
   exercises: IExercise[];
+  createdAt: Date;
+  updatedAt: Date;
 }

@@ -29,8 +29,8 @@ export default function Home() {
         </Button>
       </Link>
       <div className="space-y-3 mt-3">
-        {workouts.map((_, i) => (
-          <WorkoutCard key={i} />
+        {workouts.map((workout, i) => (
+          <WorkoutCard key={i} workout={workout} />
         ))}
       </div>
     </div>
