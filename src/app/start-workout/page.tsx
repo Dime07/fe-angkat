@@ -90,7 +90,15 @@ export default function StartWorkout() {
         className="flex flex-col gap-3"
         name="workout"
       >
+        <h1 className="text-2xl font-bold text-center">
+          Start Your Workout 💪
+        </h1>
         <Timer />
+        <Input
+          name="name"
+          placeholder="eg: Chest Day"
+          className="outline-none text-xl border-l-0 border-t-0 border-r-0 rounded-none"
+        />
         {workouts.map((workout, i) => (
           <div
             className="grid grid-cols-[200px_200px_200px_1fr] items-end gap-2"
