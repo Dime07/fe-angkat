@@ -3,7 +3,7 @@ import { IWorkout } from "../types/workout";
 
 const useGetWorkouts = () => {
   const [workouts, setWorkouts] = useState<IWorkout[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchWorkouts = async () => {
@@ -13,7 +13,7 @@ const useGetWorkouts = () => {
         });
         const resJson = await res.json();
         setWorkouts(resJson);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -22,7 +22,7 @@ const useGetWorkouts = () => {
     fetchWorkouts();
   }, []);
 
-  return { workouts, loading };
+  return { workouts, isLoading };
 };
 
 export default useGetWorkouts;
