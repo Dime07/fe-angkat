@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { cn } from "../utils";
 
 interface IPopover {
@@ -6,6 +6,9 @@ interface IPopover {
   content: ReactNode;
   className?: string;
   position?: "top" | "right" | "bottom" | "left";
+  onOpen: () => void;
+  onClose: () => void;
+  open: boolean;
 }
 
 const Popover = ({
@@ -13,8 +16,10 @@ const Popover = ({
   content,
   className,
   position = "left",
+  onOpen,
+  onClose,
+  open,
 }: IPopover) => {
-  const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -23,7 +28,7 @@ const Popover = ({
         contentRef.current &&
         !contentRef.current.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        onClose();
       }
     }
 
@@ -37,8 +42,8 @@ const Popover = ({
 
   return (
     <div className="relative">
-      <button onClick={() => setIsOpen((prev) => !prev)}>{children}</button>
-      {isOpen && (
+      <button onClick={onOpen}>{children}</button>
+      {open && (
         <div
           ref={contentRef}
           className={cn("absolute z-10 w-[120px]", className, {

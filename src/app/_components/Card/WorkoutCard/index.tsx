@@ -4,11 +4,20 @@ import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Popover from "../../Popover";
+import { deleteWorkout } from "./action";
+import { useState } from "react";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
 const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
+  const [popoverOpen, setPopoverOpen] = useState(false);
+
+  const handleDeleteWorkout = async () => {
+    await deleteWorkout(workout.id);
+    setPopoverOpen(false);
+  };
+
   return (
     <div className="w-full border border-secondary-950 rounded px-3 py-2 flex flex-col gap-4">
       <div className="flex justify-between items-start">
@@ -26,9 +35,15 @@ const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
         </div>
         <div>
           <Popover
+            open={popoverOpen}
+            onOpen={() => setPopoverOpen(true)}
+            onClose={() => setPopoverOpen(false)}
             content={
               <div className="bg-white border border-neutral-100 px-2 py-1 rounded shadow text-xs w-full flex flex-col">
-                <button className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold">
+                <button
+                  onClick={handleDeleteWorkout}
+                  className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold"
+                >
                   Delete Workout
                 </button>
                 <button className="py-1 text-left font-medium hover:font-bold">
