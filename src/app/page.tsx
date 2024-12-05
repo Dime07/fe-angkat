@@ -1,13 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import Button from "./_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import WorkoutCard from "./_components/Card/WorkoutCard";
-import useGetWorkouts from "./hooks/useGetWorkouts";
+import { WorkoutService } from "./service/workout";
 
-export default function Home() {
-  const { workouts, isLoading } = useGetWorkouts();
+
+export default async function Home() {
+  const workoutRes = await WorkoutService.getWorkout();
+  const workout = workoutRes.data;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,27 +29,11 @@ export default function Home() {
         </Button>
       </Link>
       <div className="space-y-3 mt-3">
-        {/* loading state */}
-        {isLoading && <LoadingState />}
-
-        {/* workout list */}
-        {!isLoading && (
-          <>
-            {workouts?.map((workout, i) => (
-              <WorkoutCard key={i} workout={workout} />
-            ))}
-          </>
-        )}
+          {workout?.map((workout, i) => (
+            <WorkoutCard key={i} workout={workout} />
+          ))}
       </div>
     </div>
   );
 }
 
-const LoadingState = () => {
-  return (
-    <div className="space-y-2">
-      <div className="animate-pulse bg-neutral-200 h-40 rounded" />
-      <div className="animate-pulse bg-neutral-200 h-40 rounded" />
-    </div>
-  );
-};

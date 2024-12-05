@@ -1,3 +1,5 @@
+"use client";
+
 import { IWorkout } from "@/app/types/workout";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import dayjs from "dayjs";

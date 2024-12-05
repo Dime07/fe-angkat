@@ -1,6 +1,16 @@
 "use server";
 
-export const deleteWorkout = async (workoutId: number) => {
-  console.log(workoutId);
-  return;
-};
+import { WorkoutService } from "@/app/service/workout";
+import { revalidateTag } from "next/cache";
+
+export async function deleteWorkout(workoutId: number) {
+  const response = await WorkoutService.deleteWorkout(workoutId);
+  console.log(response);
+  if (response.success) {
+    revalidateTag("get-workout");
+  }
+
+  if (!response.success) {
+    return response;
+  }
+}

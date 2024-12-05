@@ -27,6 +27,17 @@ export const WorkoutService = {
   getWorkout: async (): Promise<IBEResponse<IWorkout[]>> => {
     const res = await fetch("http://localhost:3000/workout/", {
       method: "GET",
+      next: {
+        tags: ["get-workout"],
+      },
+    });
+    const result = await res.json();
+    return result;
+  },
+
+  deleteWorkout: async (workoutId: number): Promise<IBEResponse<boolean>> => {
+    const res = await fetch(`http://localhost:3000/workout/${workoutId}`, {
+      method: "DELETE",
     });
     const result = await res.json();
     return result;
