@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IWorkout } from "../types/workout";
+import { WorkoutService } from "../service/workout";
 
 const useGetWorkouts = () => {
   const [workouts, setWorkouts] = useState<IWorkout[]>([]);
@@ -7,15 +8,15 @@ const useGetWorkouts = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/workout", {
-          method: "GET",
-        });
-        const resJson = await res.json();
-        setWorkouts(resJson);
+      const response = await WorkoutService.getWorkout();
+
+      if (response.success) {
+        setWorkouts(response.data);
         setIsLoading(false);
-      } catch (error) {
-        console.error(error);
+      }
+
+      if (!response.success) {
+        alert(response.message);
       }
     };
 

@@ -1,6 +1,6 @@
 "use server";
 
-import { redirect } from "next/navigation";
+import { WorkoutService } from "../service/workout";
 
 export async function createWorkout(_prevState: unknown, formData: FormData) {
   const generateExercise = async () => {
@@ -10,34 +10,20 @@ export async function createWorkout(_prevState: unknown, formData: FormData) {
 
     return workoutName.map((name, index) => {
       return {
-        name,
+        name: String(name),
         reps: Number(reps[index]),
         volume: Number(volume[index]),
       };
     });
   };
 
-  let redirectPath = "/";
+  const payload = {
+    name: String(formData.get("name")),
+    duration: Number(formData.get("timeSpend")),
+    exercises: await generateExercise(),
+  };
 
-  try {
-    const payload = {
-      name: formData.get("name"),
-      duration: Number(formData.get("timeSpend")),
-      exercises: await generateExercise(),
-    };
+  const response = await WorkoutService.postWorkout(payload);
 
-    await fetch("http://localhost:3000/workout/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    redirectPath = "/";
-  } catch (error) {
-    redirectPath = "/start-workout";
-    return {
-      errorMessage: JSON.stringify(error),
-    };
-  } finally {
-    redirect(redirectPath);
-  }
+  return response;
 }

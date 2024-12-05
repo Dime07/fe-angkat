@@ -6,6 +6,7 @@ import { createWorkout } from "./action";
 import Button from "../_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface IWorkout {
   workout: string;
@@ -14,6 +15,7 @@ interface IWorkout {
 }
 
 export default function StartWorkout() {
+  const router = useRouter();
   const [state, formAction, isPending] = useActionState(createWorkout, null);
   const [workouts, setWorkouts] = useState<IWorkout[]>([
     {
@@ -81,9 +83,18 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    if (state?.errorMessage) {
-      alert(state.errorMessage);
+    if(state){
+      if(state?.success){
+        router.push("/")
+        return;
+      }
+  
+      if(!state?.success){
+        alert("Failed to create workout");
+        return;
+      }
     }
+
   }, [state]);
 
   return (
@@ -126,6 +137,7 @@ export default function StartWorkout() {
               value={workout.reps}
               onChange={(e) => handleOnChange(e, "reps", i)}
               required
+              type="number"
             />
             <Input
               name={`volume[]`}
@@ -134,6 +146,7 @@ export default function StartWorkout() {
               value={workout.volume}
               onChange={(e) => handleOnChange(e, "volume", i)}
               required
+              type="number"
             />
             <div className="flex gap-2">
               <button

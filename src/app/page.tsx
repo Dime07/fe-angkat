@@ -35,7 +35,7 @@ export default function Home() {
         {/* workout list */}
         {!isLoading && (
           <>
-            {workouts.map((workout, i) => (
+            {workouts?.map((workout, i) => (
               <WorkoutCard key={i} workout={workout} />
             ))}
           </>
