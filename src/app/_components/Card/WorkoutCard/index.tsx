@@ -1,6 +1,6 @@
 "use client";
 
-import { IWorkout } from "@/app/types/workout";
+import { IWorkoutResponse } from "@/app/types/workout";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
@@ -8,11 +8,12 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Popover from "../../Popover";
 import { deleteWorkout } from "./action";
 import { useState } from "react";
+import Link from "next/link";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
-const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
+const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const handleDeleteWorkout = async () => {
@@ -48,9 +49,11 @@ const WorkoutCard = ({ workout }: { workout: IWorkout }) => {
                 >
                   Delete Workout
                 </button>
-                <button className="py-1 text-left font-medium hover:font-bold">
-                  Edit Workout
-                </button>
+                <Link href={`/edit-workout/${workout.id}`}>
+                  <button className="py-1 text-left font-medium hover:font-bold">
+                    Edit Workout
+                  </button>
+                </Link>
               </div>
             }
             position="right"

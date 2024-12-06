@@ -83,18 +83,17 @@ export default function StartWorkout() {
   };
 
   useEffect(() => {
-    if(state){
-      if(state?.success){
-        router.push("/")
+    if (state) {
+      if (state?.success) {
+        router.push("/");
         return;
       }
-  
-      if(!state?.success){
+
+      if (!state?.success) {
         alert("Failed to create workout");
         return;
       }
     }
-
   }, [state]);
 
   return (
