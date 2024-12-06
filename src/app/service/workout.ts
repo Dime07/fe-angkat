@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import { IBEResponse } from "../types";
 import { IWorkoutPayload, IWorkoutResponse } from "../types/workout";
 
@@ -7,9 +8,13 @@ export const WorkoutService = {
   postWorkout: async (
     payload: IWorkoutPayload
   ): Promise<IBEResponse<IWorkoutResponse>> => {
+    const accessToken = (await cookies()).get("an9kat")?.value;
     const res = await fetch(`${BASE_URL}/workout/`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
       body: JSON.stringify(payload),
     });
     const result = await res.json();
@@ -17,8 +22,13 @@ export const WorkoutService = {
   },
 
   getWorkout: async (): Promise<IBEResponse<IWorkoutResponse[]>> => {
+    const accessToken = (await cookies()).get("an9kat")?.value;
+    console.log(accessToken);
     const res = await fetch(`${BASE_URL}/workout/`, {
       method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
       next: {
         tags: ["get-workout"],
       },

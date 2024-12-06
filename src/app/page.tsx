@@ -4,10 +4,11 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import WorkoutCard from "./_components/Card/WorkoutCard";
 import { WorkoutService } from "./service/workout";
 
-
 export default async function Home() {
   const workoutRes = await WorkoutService.getWorkout();
   const workout = workoutRes.data;
+
+  console.log(workoutRes);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,11 +30,10 @@ export default async function Home() {
         </Button>
       </Link>
       <div className="space-y-3 mt-3">
-          {workout?.map((workout, i) => (
-            <WorkoutCard key={i} workout={workout} />
-          ))}
+        {workout?.map((workout, i) => (
+          <WorkoutCard key={i} workout={workout} />
+        ))}
       </div>
     </div>
   );
 }
-
