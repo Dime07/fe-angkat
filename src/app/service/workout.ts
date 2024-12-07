@@ -35,6 +35,9 @@ export const WorkoutService = {
   ): Promise<IBEResponse<IWorkoutResponse>> => {
     return await fetchApi(`/workout/${workoutId}`, {
       method: "GET",
+      next: {
+        tags: ["get-workout-by-id"],
+      },
     });
   },
 

@@ -33,7 +33,7 @@ const WorkoutDetailContent = ({ workout }: { workout: IWorkoutResponse }) => {
         <input type="hidden" name="timeSpend" value={workout.duration} />
         {workout.exercises.map((exercise, i) => (
           <div className="grid grid-cols-3 items-end gap-2" key={i}>
-            <input type="hidden" name="timeSpend" value={exercise.id} />
+            <input type="hidden" name="id" value={exercise.id} />
             <Input
               name={`workout[]`}
               placeholder="eg: Push Up"

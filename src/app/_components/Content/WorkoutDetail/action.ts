@@ -1,6 +1,7 @@
 "use server";
 
 import { WorkoutService } from "@/app/service/workout";
+import { revalidateTag } from "next/cache";
 
 export async function editWorkoutById(
   _prevState: unknown,
@@ -11,9 +12,11 @@ export async function editWorkoutById(
     const workoutName = formData.getAll("workout[]");
     const reps = formData.getAll("reps[]");
     const volume = formData.getAll("volume[]");
+    const ids = formData.getAll("id");
 
     return workoutName.map((name, index) => {
       return {
+        id: Number(ids[index]),
         name: String(name),
         reps: Number(reps[index]),
         volume: Number(volume[index]),
@@ -29,6 +32,7 @@ export async function editWorkoutById(
   };
 
   const response = await WorkoutService.putWorkoutById(workoutId, payload);
+  revalidateTag("get-workout-by-id");
 
   return response;
 }
