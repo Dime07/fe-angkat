@@ -16,7 +16,7 @@ export default async function login(_prevState: unknown, formData: FormData) {
 
   if (loginRes.success) {
     (await cookies()).set({
-      name: "an9kat",
+      name: "process.env.ACCESS_TOKEN_SECRET",
       value: loginRes.data.token,
     });
     redirect("/");

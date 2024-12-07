@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const accessToken = request.cookies.get("an9kat");
+  const accessToken = request.cookies.get("process.env.ACCESS_TOKEN_SECRET");
 
   if (!accessToken && !request.nextUrl.pathname.startsWith("/auth")) {
     return NextResponse.redirect(new URL("/auth/login", request.url));

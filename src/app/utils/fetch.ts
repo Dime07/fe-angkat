@@ -1,7 +1,11 @@
+"use server";
+
 import { cookies } from "next/headers";
 
 const fetchApi = async (url: string, options: RequestInit = {}) => {
-  const accessToken = (await cookies()).get("an9kat")?.value;
+  const accessToken = (await cookies()).get(
+    "process.env.ACCESS_TOKEN_SECRET"
+  )?.value;
 
   options.headers = {
     "Content-Type": "application/json",
@@ -9,9 +13,18 @@ const fetchApi = async (url: string, options: RequestInit = {}) => {
     ...options.headers,
   };
 
-  const response = await fetch(url, options);
+  // todo: research more about fetch api
+  try {
+    const response = await fetch(`${process.env.API_URL}/${url}`, options);
+    console.log("response", response);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
 
-  return response.json();
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 };
 
 export default fetchApi;

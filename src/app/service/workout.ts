@@ -2,13 +2,11 @@ import { IBEResponse } from "../types";
 import { IWorkoutPayload, IWorkoutResponse } from "../types/workout";
 import fetchApi from "../utils/fetch";
 
-const BASE_URL = process.env.API_URL;
-
 export const WorkoutService = {
   postWorkout: async (
     payload: IWorkoutPayload
   ): Promise<IBEResponse<IWorkoutResponse>> => {
-    return await fetchApi(`${BASE_URL}/workout/`, {
+    return await fetchApi(`workout/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +16,7 @@ export const WorkoutService = {
   },
 
   getWorkout: async (): Promise<IBEResponse<IWorkoutResponse[]>> => {
-    return await fetchApi(`${BASE_URL}/workout/`, {
+    return await fetchApi(`workout/`, {
       method: "GET",
       next: {
         tags: ["get-workout"],
@@ -27,7 +25,7 @@ export const WorkoutService = {
   },
 
   deleteWorkout: async (workoutId: number): Promise<IBEResponse<boolean>> => {
-    return await fetchApi(`${BASE_URL}/workout/${workoutId}`, {
+    return await fetchApi(`workout/${workoutId}`, {
       method: "DELETE",
     });
   },
@@ -35,7 +33,7 @@ export const WorkoutService = {
   getWorkoutById: async (
     workoutId: string
   ): Promise<IBEResponse<IWorkoutResponse>> => {
-    return await fetchApi(`${BASE_URL}/workout/${workoutId}`, {
+    return await fetchApi(`workout/${workoutId}`, {
       method: "GET",
     });
   },
@@ -44,7 +42,7 @@ export const WorkoutService = {
     workoutId: string,
     payload: IWorkoutPayload
   ): Promise<IBEResponse<IWorkoutResponse>> => {
-    return await fetchApi(`${BASE_URL}/workout/${workoutId}`, {
+    return await fetchApi(`workout/${workoutId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
