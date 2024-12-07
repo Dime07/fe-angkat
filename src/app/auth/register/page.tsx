@@ -2,13 +2,13 @@
 
 import Button from "@/app/_components/Button";
 import Input from "@/app/_components/Input";
-import login from "./action";
 import { useActionState, useEffect } from "react";
 import Link from "next/link";
+import register from "./action";
 import { redirect } from "next/navigation";
 
 export default function LoginPage() {
-  const [state, formAction] = useActionState(login, null);
+  const [state, formAction] = useActionState(register, null);
 
   useEffect(() => {
     if (state) {
@@ -42,6 +42,13 @@ export default function LoginPage() {
       >
         <Input
           type="text"
+          placeholder="Name"
+          name="name"
+          label="Name"
+          required
+        />
+        <Input
+          type="text"
           placeholder="Email"
           name="email"
           label="Email"
@@ -58,14 +65,14 @@ export default function LoginPage() {
           type="submit"
           className="w-full py-2 text-base bg-secondary-950"
         >
-          Login
+          Register
         </Button>
       </form>
       <Link
-        href="/auth/register"
+        href="/auth/login"
         className="text-sm text-secondary-800 hover:font-medium"
       >
-        Don&apos;t have an account?
+        Already have an account?
       </Link>
     </div>
   );

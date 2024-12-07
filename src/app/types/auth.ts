@@ -3,7 +3,13 @@ export interface ILoginPayload {
   password: string;
 }
 
-export interface ILoginResponse {
+export interface IRegisterPayload {
+  email: string;
+  password: string;
+  name: string;
+}
+
+export interface IAuthResponse {
   token: string;
   name: string;
   email: string;

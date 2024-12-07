@@ -3,21 +3,25 @@
 import { AuthService } from "@/app/service/auth";
 import { cookies } from "next/headers";
 
-export default async function login(_prevState: unknown, formData: FormData) {
+export default async function register(
+  _prevState: unknown,
+  formData: FormData
+) {
   const payload = {
+    name: String(formData.get("name")),
     email: String(formData.get("email")),
     password: String(formData.get("password")),
   };
 
-  const loginRes = await AuthService.login(payload);
+  const registerRes = await AuthService.register(payload);
 
-  if (loginRes.success) {
+  if (registerRes.success) {
     // Set cookie for token
     (await cookies()).set({
       name: "process.env.ACCESS_TOKEN_SECRET",
-      value: loginRes.data.token,
+      value: registerRes.data.token,
     });
   }
 
-  return loginRes;
+  return registerRes;
 }
