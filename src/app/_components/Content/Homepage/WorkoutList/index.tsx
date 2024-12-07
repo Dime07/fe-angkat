@@ -2,7 +2,7 @@ import { WorkoutService } from "@/app/service/workout";
 import WorkoutCard from "../../../Card/WorkoutCard";
 
 const WorkoutList = async () => {
-  const workoutRes = await WorkoutService.getWorkout();
+  const workoutRes = await WorkoutService.getMyWorkout();
   const workout = workoutRes.data;
 
   return (

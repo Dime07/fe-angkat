@@ -15,8 +15,8 @@ export const WorkoutService = {
     });
   },
 
-  getWorkout: async (): Promise<IBEResponse<IWorkoutResponse[]>> => {
-    return await fetchApi(`/workout/`, {
+  getMyWorkout: async (): Promise<IBEResponse<IWorkoutResponse[]>> => {
+    return await fetchApi(`/workout/me`, {
       method: "GET",
       next: {
         tags: ["get-workout"],
