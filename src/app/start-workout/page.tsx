@@ -43,7 +43,6 @@ export default function StartWorkout() {
     setWorkouts((prev) => {
       const newWorkouts = [...prev];
       newWorkouts.splice(index, 1);
-      console.log(newWorkouts);
       return newWorkouts;
     });
   };

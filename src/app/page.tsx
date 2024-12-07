@@ -8,8 +8,6 @@ export default async function Home() {
   const workoutRes = await WorkoutService.getWorkout();
   const workout = workoutRes.data;
 
-  console.log(workoutRes);
-
   return (
     <div className="flex flex-col min-h-screen">
       <div className="space-y-0.5 mt-5">

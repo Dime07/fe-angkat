@@ -8,13 +8,11 @@ import { editWorkoutById } from "./action";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 const WorkoutDetailContent = ({ workout }: { workout: IWorkoutResponse }) => {
-  const [state, formAction, isPending] = useActionState(
+  const [_state, formAction, isPending] = useActionState(
     (prevState: unknown, formData: FormData) =>
       editWorkoutById(prevState, formData, workout.id.toString()),
     null
   );
-
-  console.log(state);
 
   return (
     <>

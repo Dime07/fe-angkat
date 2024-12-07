@@ -7,4 +7,5 @@ export interface ILoginResponse {
   token: string;
   name: string;
   email: string;
+  id: number;
 }

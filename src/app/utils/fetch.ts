@@ -15,15 +15,18 @@ const fetchApi = async (url: string, options: RequestInit = {}) => {
 
   // todo: research more about fetch api
   try {
-    const response = await fetch(`${process.env.API_URL}/${url}`, options);
-    console.log("response", response);
-    if (!response.ok) {
+    const response = await fetch(`${process.env.API_URL}${url}`, options);
+    if (!response?.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
 
     return response.json();
   } catch (error) {
     console.error("Error fetching data:", error);
+    return {
+      success: false,
+      message: "something error when fetching data",
+    };
   }
 };
 

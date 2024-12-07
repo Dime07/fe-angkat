@@ -12,13 +12,13 @@ export default async function login(_prevState: unknown, formData: FormData) {
 
   const loginRes = await AuthService.login(payload);
 
-  console.log(loginRes);
-
   if (loginRes.success) {
+    // Set cookie for token
     (await cookies()).set({
       name: "process.env.ACCESS_TOKEN_SECRET",
       value: loginRes.data.token,
     });
+
     redirect("/");
   }
 
