@@ -1,7 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import Button from "../../Button";
+import useGetUser from "@/app/hooks/useGetUser";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
+  const { user } = useGetUser();
   return (
     <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">
       {/* //Todo : Replace logo with image */}
@@ -18,11 +23,15 @@ const Navbar = () => {
         </li>
       </ul>
       <div>
-        <Link href="/auth/login">
-          <Button variant="secondary">
-            <span>Login</span>
-          </Button>
-        </Link>
+        {user.name ? (
+          <LogoutButton />
+        ) : (
+          <Link href="/auth/login">
+            <Button variant="secondary">
+              <span>Login</span>
+            </Button>
+          </Link>
+        )}
       </div>
     </nav>
   );

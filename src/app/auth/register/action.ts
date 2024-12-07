@@ -18,7 +18,7 @@ export default async function register(
   if (registerRes.success) {
     // Set cookie for token
     (await cookies()).set({
-      name: "process.env.ACCESS_TOKEN_SECRET",
+      name: `${process.env.ACCESS_TOKEN_SECRET}`,
       value: registerRes.data.token,
     });
   }

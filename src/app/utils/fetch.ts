@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 const fetchApi = async (url: string, options: RequestInit = {}) => {
   const accessToken = (await cookies()).get(
-    "process.env.ACCESS_TOKEN_SECRET"
+    `${process.env.ACCESS_TOKEN_SECRET}`
   )?.value;
 
   options.headers = {
