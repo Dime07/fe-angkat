@@ -1,6 +1,6 @@
 "use client";
 
-import { IWorkoutResponse } from "@/app/types/workout";
+import { IWorkoutResponse } from "@/types/workout";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";

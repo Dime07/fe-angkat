@@ -1,4 +1,4 @@
-import { WorkoutService } from "@/app/service/workout";
+import { WorkoutService } from "@/services/workout";
 import WorkoutCard from "../../../Card/WorkoutCard";
 
 const WorkoutList = async () => {

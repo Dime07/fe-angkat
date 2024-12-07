@@ -1,6 +1,6 @@
 "use server";
 
-import { AuthService } from "@/app/service/auth";
+import { AuthService } from "@/services/auth";
 import { cookies } from "next/headers";
 
 export default async function login(_prevState: unknown, formData: FormData) {

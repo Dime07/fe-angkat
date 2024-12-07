@@ -1,6 +1,6 @@
-import { IBEResponse } from "../types";
-import { ILoginPayload, IAuthResponse } from "../types/auth";
-import fetchApi from "../utils/fetch";
+import { IBEResponse } from "@/types";
+import { ILoginPayload, IAuthResponse } from "@/types/auth";
+import fetchApi from "@/utils/fetch";
 
 export const AuthService = {
   login: async (

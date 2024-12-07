@@ -1,6 +1,6 @@
 "use client";
 
-import useGetUserFromLocalstorage from "@/app/hooks/useGetUserFromLocalstorage";
+import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 
 const Header = () => {
   const { user } = useGetUserFromLocalstorage();

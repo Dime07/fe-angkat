@@ -1,6 +1,6 @@
-import { IBEResponse } from "../types";
-import { IWorkoutPayload, IWorkoutResponse } from "../types/workout";
-import fetchApi from "../utils/fetch";
+import { IBEResponse } from "@/types";
+import { IWorkoutPayload, IWorkoutResponse } from "@/types/workout";
+import fetchApi from "@/utils/fetch";
 
 export const WorkoutService = {
   postWorkout: async (

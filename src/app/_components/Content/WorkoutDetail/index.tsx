@@ -1,6 +1,6 @@
 "use client";
 
-import { IWorkoutResponse } from "@/app/types/workout";
+import { IWorkoutResponse } from "@/types/workout";
 import Input from "../../Input";
 import Button from "../../Button";
 import { useActionState } from "react";

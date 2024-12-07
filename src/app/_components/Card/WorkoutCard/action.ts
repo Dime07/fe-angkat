@@ -1,6 +1,6 @@
 "use server";
 
-import { WorkoutService } from "@/app/service/workout";
+import { WorkoutService } from "@/services/workout";
 import { revalidateTag } from "next/cache";
 
 export async function deleteWorkout(workoutId: number) {

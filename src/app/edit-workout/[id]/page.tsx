@@ -1,5 +1,5 @@
 import WorkoutDetailContent from "@/app/_components/Content/WorkoutDetail";
-import { WorkoutService } from "@/app/service/workout";
+import { WorkoutService } from "@/services/workout";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import relativeTime from "dayjs/plugin/relativeTime";
