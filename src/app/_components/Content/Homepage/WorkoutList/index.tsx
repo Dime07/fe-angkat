@@ -10,7 +10,7 @@ const WorkoutList = async () => {
       {workout?.length > 0 ? (
         <>
           {workout?.map((workout, i) => (
-            <WorkoutCard key={i} workout={workout} />
+            <WorkoutCard key={i} workout={workout} showAction />
           ))}
         </>
       ) : (

@@ -30,9 +30,9 @@ const Navbar = () => {
         {NAV_LINK.map((link) => (
           <li
             className={cn(
-              "font-semibold px-2 py-0.5 flex items-center bg-slate-100 rounded text-neutral-950",
+              "font-semibold px-2 py-0.5 flex items-center  rounded text-neutral-950",
               {
-                "text-secondary-700": pathname === link.href,
+                "text-secondary-700 bg-slate-100": pathname === link.href,
               }
             )}
             key={link.name}

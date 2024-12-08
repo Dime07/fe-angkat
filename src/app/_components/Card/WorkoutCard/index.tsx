@@ -15,7 +15,17 @@ import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
-const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
+interface IWorkoutCardProps {
+  workout: IWorkoutResponse;
+  showLikeButton?: boolean;
+  showAction?: boolean;
+}
+
+const WorkoutCard = ({
+  workout,
+  showLikeButton = false,
+  showAction = false,
+}: IWorkoutCardProps) => {
   const { user } = useGetUserFromLocalstorage();
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -43,33 +53,35 @@ const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
             {dayjs(workout.createdAt).format("DD MMMM YYYY")}
           </p>
         </div>
-        <div>
-          <Popover
-            open={popoverOpen}
-            onOpen={() => setPopoverOpen(true)}
-            onClose={() => setPopoverOpen(false)}
-            content={
-              <div className="bg-white border border-neutral-100 px-2 py-1 rounded shadow text-xs w-full flex flex-col">
-                <button
-                  onClick={handleDeleteWorkout}
-                  className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold"
-                >
-                  Delete Workout
-                </button>
-                <Link href={`/edit-workout/${workout.id}`}>
-                  <button className="py-1 text-left font-medium hover:font-bold">
-                    Edit Workout
+        {showAction && (
+          <div>
+            <Popover
+              open={popoverOpen}
+              onOpen={() => setPopoverOpen(true)}
+              onClose={() => setPopoverOpen(false)}
+              content={
+                <div className="bg-white border border-neutral-100 px-2 py-1 rounded shadow text-xs w-full flex flex-col">
+                  <button
+                    onClick={handleDeleteWorkout}
+                    className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold"
+                  >
+                    Delete Workout
                   </button>
-                </Link>
+                  <Link href={`/edit-workout/${workout.id}`}>
+                    <button className="py-1 text-left font-medium hover:font-bold">
+                      Edit Workout
+                    </button>
+                  </Link>
+                </div>
+              }
+              position="right"
+            >
+              <div>
+                <Icon icon="fluent:line-horizontal-1-dot-20-filled" />
               </div>
-            }
-            position="right"
-          >
-            <div>
-              <Icon icon="fluent:line-horizontal-1-dot-20-filled" />
-            </div>
-          </Popover>
-        </div>
+            </Popover>
+          </div>
+        )}
       </div>
       {/* content */}
       <div className="grid grid-cols-3 gap-3">
@@ -88,14 +100,16 @@ const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
           </div>
         ))}
       </div>
-      {/* action */}
-      <div>
-        <LikeButton
-          count={workout.likes.length}
-          isLiked={isLiked}
-          workoutId={workout.id}
-        />
-      </div>
+      {/* like button */}
+      {showLikeButton && (
+        <div>
+          <LikeButton
+            count={workout.likes.length}
+            isLiked={isLiked}
+            workoutId={workout.id}
+          />
+        </div>
+      )}
     </div>
   );
 };
