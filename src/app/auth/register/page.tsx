@@ -31,10 +31,14 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col gap-3 justify-center items-center py-4 min-h-[calc(100vh-40px)] overflow-auto">
-      <h1 className="text-2xl text-neutral-950 font-semibold leading-tight">
-        Welcome to <span className="text-secondary-950">Angkat</span>
-      </h1>
-      <p className="text-neutral-950 text-sm">your personal workout tracker</p>
+      <div className="space-y-1">
+        <h1 className="text-2xl text-neutral-950 font-semibold leading-tight text-center">
+          Welcome to <span className="text-secondary-950">Angkat</span>
+        </h1>
+        <p className="text-neutral-950 text-sm text-center">
+          create an account to start tracking your workout
+        </p>
+      </div>
       <form
         action={(formData) => {
           formAction(formData);

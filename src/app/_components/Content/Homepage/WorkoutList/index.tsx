@@ -6,7 +6,7 @@ const WorkoutList = async () => {
   const workout = workoutRes.data;
 
   return (
-    <div className="space-y-3 mt-3">
+    <div className="mt-3 grid grid-cols-2 gap-3">
       {workout?.length > 0 ? (
         <>
           {workout?.map((workout, i) => (

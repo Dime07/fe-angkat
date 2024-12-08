@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Link from "next/link";
@@ -24,8 +25,15 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">
-      {/* //Todo : Replace logo with image */}
-      <a href="/">Angkat</a>
+      <a href="/">
+        <img
+          src="/angkat-logo.svg"
+          alt="angkat logo"
+          className="w-full h-8"
+          height={32}
+          width={65}
+        />
+      </a>
       <ul className="flex gap-2 text-xs">
         {NAV_LINK.map((link) => (
           <li

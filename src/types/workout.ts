@@ -22,6 +22,9 @@ export interface ILikes {
 export type IWorkoutResponse = IWorkout & {
   exercises: IExercise[];
   likes: ILikes[];
+  user: {
+    name: string;
+  };
 };
 
 export interface IWorkoutPayload {

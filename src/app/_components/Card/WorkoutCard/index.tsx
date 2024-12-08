@@ -11,6 +11,7 @@ import { useState } from "react";
 import Link from "next/link";
 import LikeButton from "./LikeButton";
 import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
+import { getAcronim } from "@/utils/helper";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
@@ -28,6 +29,7 @@ const WorkoutCard = ({
 }: IWorkoutCardProps) => {
   const { user } = useGetUserFromLocalstorage();
   const [popoverOpen, setPopoverOpen] = useState(false);
+  console.log("workout", workout);
 
   const handleDeleteWorkout = async () => {
     await deleteWorkout(workout.id);
@@ -39,19 +41,26 @@ const WorkoutCard = ({
   );
 
   return (
-    <div className="w-full border border-secondary-950 rounded px-3 py-2 flex flex-col gap-4">
+    <div className="w-full border border-neutral-100 shadow-sm hover:scale-105 hover:z-10 hover:shadow-md relative rounded-md px-3 py-2 flex flex-col gap-4 bg-white transition-all ease-in-out">
       <div className="flex justify-between items-start">
         {/* header */}
-        <div>
-          <p className="text-sm font-bold text-primary-950">
-            {workout.name} •{" "}
-            <span className="text-secondary-700">
-              {dayjs.duration(workout.duration, "seconds").humanize()}
+        <div className="flex gap-2 items-center">
+          <div className="size-8 rounded-full bg-secondary-950 flex items-center justify-center overflow-hidden">
+            <span className="text-white font-medium text-sm uppercase">
+              {getAcronim(workout.user.name)}
             </span>
-          </p>
-          <p className="text-[10px] text-primary-400">
-            {dayjs(workout.createdAt).format("DD MMMM YYYY")}
-          </p>
+          </div>
+          <div>
+            <p className="text-sm font-bold text-primary-950">
+              {workout.name} •{" "}
+              <span className="text-secondary-700">
+                {dayjs.duration(workout.duration, "seconds").humanize()}
+              </span>
+            </p>
+            <p className="text-[10px] text-primary-400">
+              {dayjs(workout.createdAt).format("DD MMMM YYYY")}
+            </p>
+          </div>
         </div>
         {showAction && (
           <div>
@@ -68,7 +77,7 @@ const WorkoutCard = ({
                     Delete Workout
                   </button>
                   <Link href={`/edit-workout/${workout.id}`}>
-                    <button className="py-1 text-left font-medium hover:font-bold">
+                    <button className="py-1 text-left font-medium hover:font-bold text-red-400">
                       Edit Workout
                     </button>
                   </Link>
@@ -87,15 +96,14 @@ const WorkoutCard = ({
       <div className="grid grid-cols-3 gap-3">
         {workout.exercises.map((exercise, index) => (
           <div
-            className="border border-primary-200 p-2 rounded text-sm text-primary-950"
+            className="border border-neutral-200 p-2 rounded text-sm text-primary-950"
             key={index}
           >
-            <p className="font-bold">{exercise.name}</p>
-            <p>
-              volume: <b>{exercise.volume}kg</b>
+            <p className="font-bold capitalize text-primary-950">
+              {exercise.name}
             </p>
             <p>
-              reps: <b>{exercise.reps}</b>
+              {exercise.reps} x {exercise.volume}kg
             </p>
           </div>
         ))}

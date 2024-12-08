@@ -22,8 +22,8 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <Navbar />
-        <div className="px-4 mt-10 relative flex justify-center w-full bg-primary-50">
-          <div className="max-w-screen-md w-full bg-white px-4">{children}</div>
+        <div className="px-4 mt-10 relative flex justify-center w-full bg-white">
+          <div className="w-full bg-white px-4 max-w-[1440px]">{children}</div>
         </div>
       </body>
     </html>

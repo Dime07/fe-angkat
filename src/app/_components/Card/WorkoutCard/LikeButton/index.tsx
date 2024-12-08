@@ -18,7 +18,7 @@ const LikeButton = ({ isLiked, count, workoutId }: ILikeButtonProps) => {
           like(workoutId);
         }
       }}
-      className="flex gap-0.5 items-center"
+      className="flex gap-0.5 items-center active:scale-150 transition-all ease-in-out"
     >
       <Icon
         icon="solar:fire-bold"
