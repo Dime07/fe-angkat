@@ -117,7 +117,7 @@ export default function StartWorkout() {
         />
         {workouts.map((workout, i) => (
           <div
-            className="grid grid-cols-[200px_200px_200px_1fr] items-end gap-2"
+            className="grid grid-cols-[1fr_1fr_1fr_100px] items-end gap-2"
             key={i}
           >
             <Input
