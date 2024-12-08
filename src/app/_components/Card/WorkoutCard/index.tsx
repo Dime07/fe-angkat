@@ -70,17 +70,17 @@ const WorkoutCard = ({
               onClose={() => setPopoverOpen(false)}
               content={
                 <div className="bg-white border border-neutral-100 px-2 py-1 rounded shadow text-xs w-full flex flex-col">
-                  <button
-                    onClick={handleDeleteWorkout}
-                    className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold"
-                  >
-                    Delete Workout
-                  </button>
                   <Link href={`/edit-workout/${workout.id}`}>
-                    <button className="py-1 text-left font-medium hover:font-bold text-red-400">
+                    <button className="py-1 text-left font-medium hover:font-bold ">
                       Edit Workout
                     </button>
                   </Link>
+                  <button
+                    onClick={handleDeleteWorkout}
+                    className="py-1 border-b border-neutral-100 text-left font-medium hover:font-bold text-red-400"
+                  >
+                    Delete Workout
+                  </button>
                 </div>
               }
               position="right"
