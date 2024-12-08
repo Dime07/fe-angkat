@@ -13,7 +13,16 @@ export interface IWorkout {
   updatedAt: Date;
 }
 
-export type IWorkoutResponse = IWorkout & { exercises: IExercise[] };
+export interface ILikes {
+  id: number;
+  workoutId: number;
+  userId: number;
+}
+
+export type IWorkoutResponse = IWorkout & {
+  exercises: IExercise[];
+  likes: ILikes[];
+};
 
 export interface IWorkoutPayload {
   name: string;

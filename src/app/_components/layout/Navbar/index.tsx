@@ -21,7 +21,6 @@ const NAV_LINK = [
 const Navbar = () => {
   const { user } = useGetUserFromLocalstorage();
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">

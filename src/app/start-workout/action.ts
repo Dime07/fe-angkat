@@ -1,6 +1,6 @@
 "use server";
 
-import { WorkoutService } from "../service/workout";
+import { WorkoutService } from "@/services/workout";
 
 export async function createWorkout(_prevState: unknown, formData: FormData) {
   const generateExercise = async () => {

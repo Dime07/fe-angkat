@@ -20,6 +20,7 @@ export default function LoginPage() {
       localStorage.setItem(
         "user",
         JSON.stringify({
+          id: state.data.id,
           name: state.data.name,
           email: state.data.email,
         })

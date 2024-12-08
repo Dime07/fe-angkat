@@ -24,6 +24,15 @@ export const WorkoutService = {
     });
   },
 
+  getAllWorkout: async (): Promise<IBEResponse<IWorkoutResponse[]>> => {
+    return await fetchApi(`/workout/`, {
+      method: "GET",
+      next: {
+        tags: ["get-all-workout"],
+      },
+    });
+  },
+
   deleteWorkout: async (workoutId: number): Promise<IBEResponse<boolean>> => {
     return await fetchApi(`/workout/${workoutId}`, {
       method: "DELETE",
@@ -49,6 +58,18 @@ export const WorkoutService = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+    });
+  },
+
+  likeWorkout: async (workoutId: number): Promise<IBEResponse<boolean>> => {
+    return await fetchApi(`/workout/${workoutId}/like`, {
+      method: "POST",
+    });
+  },
+
+  unlikeWorkout: async (workoutId: number): Promise<IBEResponse<boolean>> => {
+    return await fetchApi(`/workout/${workoutId}/unlike`, {
+      method: "POST",
     });
   },
 };

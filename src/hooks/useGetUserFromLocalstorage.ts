@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 interface IUserLocalStorage {
+  id: string;
   name: string;
   email: string;
 }

@@ -9,17 +9,24 @@ import Popover from "../../Popover";
 import { deleteWorkout } from "./action";
 import { useState } from "react";
 import Link from "next/link";
+import LikeButton from "./LikeButton";
+import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
 
 const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
+  const { user } = useGetUserFromLocalstorage();
   const [popoverOpen, setPopoverOpen] = useState(false);
 
   const handleDeleteWorkout = async () => {
     await deleteWorkout(workout.id);
     setPopoverOpen(false);
   };
+
+  const isLiked = workout.likes.some(
+    (like) => like.userId === Number(user?.id)
+  );
 
   return (
     <div className="w-full border border-secondary-950 rounded px-3 py-2 flex flex-col gap-4">
@@ -80,6 +87,14 @@ const WorkoutCard = ({ workout }: { workout: IWorkoutResponse }) => {
             </p>
           </div>
         ))}
+      </div>
+      {/* action */}
+      <div>
+        <LikeButton
+          count={workout.likes.length}
+          isLiked={isLiked}
+          workoutId={workout.id}
+        />
       </div>
     </div>
   );
