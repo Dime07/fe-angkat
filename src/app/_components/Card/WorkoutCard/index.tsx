@@ -29,7 +29,6 @@ const WorkoutCard = ({
 }: IWorkoutCardProps) => {
   const { user } = useGetUserFromLocalstorage();
   const [popoverOpen, setPopoverOpen] = useState(false);
-  console.log("workout", workout);
 
   const handleDeleteWorkout = async () => {
     await deleteWorkout(workout.id);
