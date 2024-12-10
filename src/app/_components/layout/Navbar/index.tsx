@@ -25,7 +25,7 @@ const Navbar = () => {
 
   return (
     <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">
-      <a href="/">
+      <Link href="/">
         <img
           src="/angkat-logo.svg"
           alt="angkat logo"
@@ -33,7 +33,7 @@ const Navbar = () => {
           height={32}
           width={65}
         />
-      </a>
+      </Link>
       <ul className="flex gap-2 text-xs">
         {NAV_LINK.map((link) => (
           <li

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import WorkoutList from "../_components/Content/Community/WorkoutList";
 
 export default function CommunityPage() {
@@ -8,7 +9,7 @@ export default function CommunityPage() {
           Check out other progress 💪
         </h1>
         <p className="text-neutral-800 text-sm">
-          Let&apos;s see how other people are doing
+          Let's see how other people are doing
         </p>
       </div>
       <WorkoutList />

@@ -9,9 +9,7 @@ const Header = () => {
       <h1 className="text-2xl font-bold text-neutral-950">
         Welcome , {user?.name} 👋
       </h1>
-      <p className="text-neutral-800 text-sm">
-        Let&apos;s start a healthy life
-      </p>
+      <p className="text-neutral-800 text-sm">Lets start a healthy life</p>
     </div>
   );
 };

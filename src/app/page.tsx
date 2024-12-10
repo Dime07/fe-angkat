@@ -13,7 +13,7 @@ export default function Home() {
           <Icon
             icon="hugeicons:workout-stretching"
             className="text-primary-950 text-xl group-hover:text-white"
-          />{" "}
+          />
           Start Workout
         </Button>
       </Link>
