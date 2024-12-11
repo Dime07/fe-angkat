@@ -6,17 +6,19 @@ const WorkoutList = async () => {
   const workout = workoutRes.data;
 
   return (
-    <div className="mt-3 grid grid-cols-2 gap-3">
+    <>
       {workout?.length > 0 ? (
         <>
-          {workout?.map((workout, i) => (
-            <WorkoutCard key={i} workout={workout} showAction />
-          ))}
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            {workout?.map((workout, i) => (
+              <WorkoutCard key={i} workout={workout} showAction />
+            ))}
+          </div>
         </>
       ) : (
         <WorkoutListEmptyState />
       )}
-    </div>
+    </>
   );
 };
 

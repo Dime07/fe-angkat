@@ -2,7 +2,6 @@
 "use client";
 
 import Link from "next/link";
-import Button from "../../Button";
 import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 import LogoutButton from "./LogoutButton";
 import { usePathname } from "next/navigation";
@@ -24,7 +23,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full fixed top-0 bg-white shadow-sm flex justify-between items-center py-2 px-4 z-50">
+    <nav className="w-full fixed top-0 bg-neutral-950 shadow-sm flex justify-between items-center py-2 px-4 z-50">
       <Link href="/">
         <img
           src="/angkat-logo.svg"
@@ -34,13 +33,13 @@ const Navbar = () => {
           width={65}
         />
       </Link>
-      <ul className="flex gap-2 text-xs">
+      <ul className="flex gap-2 text-xs items-center justify-center">
         {NAV_LINK.map((link) => (
           <li
             className={cn(
-              "font-semibold px-2 py-0.5 flex items-center  rounded text-neutral-950",
+              "font-semibold px-2 py-0.5 flex items-center  rounded text-white",
               {
-                "text-secondary-700 bg-slate-100": pathname === link.href,
+                "text-neutral-950 bg-white": pathname === link.href,
               }
             )}
             key={link.name}
@@ -53,11 +52,7 @@ const Navbar = () => {
         {user?.name ? (
           <LogoutButton />
         ) : (
-          <Link href="/auth/login">
-            <Button variant="secondary">
-              <span>Login</span>
-            </Button>
-          </Link>
+          <p className="text-white font-medium text-sm">made with ❤️</p>
         )}
       </div>
     </nav>

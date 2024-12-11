@@ -59,10 +59,7 @@ export default function LoginPage() {
           label="Password"
           required
         />
-        <Button
-          type="submit"
-          className="w-full py-2 text-base bg-secondary-950"
-        >
+        <Button type="submit" className="w-full py-2 text-base">
           Login
         </Button>
       </form>
