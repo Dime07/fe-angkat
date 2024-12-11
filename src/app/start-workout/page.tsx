@@ -7,6 +7,7 @@ import Button from "../_components/Button";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useActionState, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/useToast";
 
 interface IWorkout {
   workout: string;
@@ -34,6 +35,7 @@ export default function StartWorkout() {
       volume: "",
     },
   ]);
+  const { addToast } = useToast();
 
   const addWorkout = (workout: IWorkout) => {
     setWorkouts([...workouts, workout]);
@@ -84,12 +86,14 @@ export default function StartWorkout() {
   useEffect(() => {
     if (state) {
       if (state?.success) {
-        router.push("/");
+        addToast({ message: "Workout created", type: "success" }).then(() => {
+          router.push("/");
+        });
         return;
       }
 
       if (!state?.success) {
-        alert("Failed to create workout");
+        addToast({ message: state.message, type: "error" });
         return;
       }
     }

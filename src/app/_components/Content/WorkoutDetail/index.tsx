@@ -3,16 +3,27 @@
 import { IWorkoutResponse } from "@/types/workout";
 import Input from "../../Input";
 import Button from "../../Button";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { editWorkoutById } from "./action";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { useToast } from "@/hooks/useToast";
 
 const WorkoutDetailContent = ({ workout }: { workout: IWorkoutResponse }) => {
-  const [_state, formAction, isPending] = useActionState(
+  const [state, formAction, isPending] = useActionState(
     (prevState: unknown, formData: FormData) =>
       editWorkoutById(prevState, formData, workout.id.toString()),
     null
   );
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    if (state) {
+      addToast({
+        message: state.message,
+        type: state.success ? "success" : "error",
+      });
+    }
+  }, [state]);
 
   return (
     <>
