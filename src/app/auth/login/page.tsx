@@ -6,14 +6,16 @@ import login from "./action";
 import { useActionState, useEffect } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { useToast } from "@/hooks/useToast";
 
 export default function LoginPage() {
   const [state, formAction] = useActionState(login, null);
+  const { addToast } = useToast();
 
   useEffect(() => {
     if (state) {
       if (!state.success) {
-        alert(state.message);
+        addToast({ message: state.message, type: "error" });
         return;
       }
 
@@ -25,7 +27,12 @@ export default function LoginPage() {
           email: state.data.email,
         })
       );
-      redirect("/");
+      addToast({
+        message: "Login success, redirecting...",
+        type: "success",
+      }).then(() => {
+        redirect("/");
+      });
     }
   }, [state]);
 

@@ -36,6 +36,21 @@ export default {
           "950": "#0e315d",
         },
       },
+      animation: {
+        enter: "fadeInUp 300ms ease-out",
+      },
+      keyframes: {
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translate(0, 10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translate(0)",
+          },
+        },
+      },
     },
   },
   plugins: [],

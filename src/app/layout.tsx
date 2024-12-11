@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./_components/layout/Navbar";
 import { Inter } from "next/font/google";
+import { ToastProvider } from "@/hooks/useToast";
+import Toast from "./_components/Toast";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,12 +22,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.className}>
-      <body>
-        <Navbar />
-        <div className="px-4 mt-10 relative flex justify-center w-full bg-white">
-          <div className="w-full bg-white px-4 max-w-[1440px]">{children}</div>
-        </div>
-      </body>
+      <ToastProvider>
+        <body>
+          <Navbar />
+          <div className="px-4 mt-10 relative flex justify-center w-full bg-white">
+            <Toast />
+            <div className="w-full bg-white px-4 max-w-[1440px]">
+              {children}
+            </div>
+          </div>
+        </body>
+      </ToastProvider>
     </html>
   );
 }
