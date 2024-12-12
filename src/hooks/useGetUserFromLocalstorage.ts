@@ -7,6 +7,12 @@ interface IUserLocalStorage {
 }
 
 const useGetUserFromLocalstorage = () => {
+  let storedUser = "";
+
+  if (typeof window !== "undefined") {
+    storedUser = localStorage.getItem("user") ?? "";
+  }
+
   const removeUser = () => {
     localStorage.removeItem("user");
   };
@@ -15,8 +21,9 @@ const useGetUserFromLocalstorage = () => {
     localStorage.setItem("user", JSON.stringify(data));
   };
 
-  const userLocalStorage = localStorage.getItem("user");
-  const user = userLocalStorage ? JSON.parse(userLocalStorage) : null;
+  const user: IUserLocalStorage | null = storedUser
+    ? JSON.parse(storedUser)
+    : null;
 
   return { user, removeUser, handleSetUser };
 };
