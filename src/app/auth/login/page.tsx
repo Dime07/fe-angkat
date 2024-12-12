@@ -27,12 +27,8 @@ export default function LoginPage() {
           email: state.data.email,
         })
       );
-      addToast({
-        message: "Login success, redirecting...",
-        type: "success",
-      }).then(() => {
-        redirect("/");
-      });
+
+      redirect("/");
     }
   }, [state]);
 

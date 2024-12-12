@@ -40,7 +40,7 @@ const WorkoutCard = ({
   );
 
   return (
-    <div className="w-full border border-neutral-100 shadow-sm hover:scale-105 hover:z-10 hover:shadow-md relative rounded-md px-3 py-2 flex flex-col gap-4 bg-white transition-all ease-in-out">
+    <div className="w-full border border-neutral-100 shadow-sm hover:scale-105 hover:z-10 hover:shadow-md relative rounded-md px-3 py-2 flex flex-col gap-2.5 bg-white transition-all ease-in-out">
       <div className="flex justify-between items-start">
         {/* header */}
         <div className="flex gap-2 items-center">
@@ -51,10 +51,7 @@ const WorkoutCard = ({
           </div>
           <div>
             <p className="text-sm font-bold text-primary-950">
-              {workout.name} •{" "}
-              <span className="text-secondary-700">
-                {dayjs.duration(workout.duration, "seconds").humanize()}
-              </span>
+              {workout.user.name}
             </p>
             <p className="text-[10px] text-primary-400">
               {dayjs(workout.createdAt).format("DD MMMM YYYY")}
@@ -91,25 +88,55 @@ const WorkoutCard = ({
           </div>
         )}
       </div>
-      {/* content */}
-      <div className="grid grid-cols-3 gap-3">
-        {workout.exercises.map((exercise, index) => (
-          <div
-            className="border border-neutral-200 p-2 rounded text-sm text-primary-950"
-            key={index}
-          >
-            <p className="font-bold capitalize text-primary-950">
-              {exercise.name}
-            </p>
-            <p>
-              {exercise.reps} x {exercise.volume}kg
+      {/* description */}
+      <div className="flex flex-col gap-1">
+        <p className="text-lg font-bold capitalize text-secondary-900">
+          {workout.name}
+        </p>
+        <div className="flex gap-2.5">
+          <div className="space-y-1">
+            <p className="text-xs text-neutral-600">Time</p>
+            <p className="text-sm font-medium">
+              {dayjs.duration(workout.duration, "seconds").humanize()}
             </p>
           </div>
-        ))}
+          <div className="space-y-1">
+            <p className="text-xs text-neutral-600">Volume</p>
+            <p className="text-sm font-medium">
+              {workout.exercises.reduce(
+                (acc, exercise) => acc + exercise.volume * exercise.reps,
+                0
+              )}{" "}
+              Kg
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* content */}
+      <div className="space-y-1">
+        <p className="text-xs text-neutral-600">Workouts</p>
+        <div className="flex flex-col gap-1.5">
+          {workout.exercises.map((exercise, index) => (
+            <div
+              className="border border-neutral-200 p-2 rounded text-sm text-primary-950"
+              key={index}
+            >
+              <p className="font-bold capitalize text-primary-950 text-base flex items-center gap-2">
+                <span>
+                  <Icon
+                    icon="arcticons:openworkout"
+                    className="font-medium text-lg"
+                  />
+                </span>
+                {exercise.reps} reps {exercise.name}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
       {/* like button */}
       {showLikeButton && (
-        <div>
+        <div className="mt-auto">
           <LikeButton
             count={workout.likes.length}
             isLiked={isLiked}

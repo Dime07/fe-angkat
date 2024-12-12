@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Angkat",
+  title: "Angkat | Workout Tracker",
   description: "Record your personal record at Angkat",
 };
 
