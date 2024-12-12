@@ -2,10 +2,10 @@
 "use client";
 
 import Link from "next/link";
-import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 import LogoutButton from "./LogoutButton";
 import { usePathname } from "next/navigation";
 import { cn } from "../../utils";
+import navbarLogo from "@/app/_components/images/angkat-logo.svg";
 
 const NAV_LINK = [
   {
@@ -19,14 +19,13 @@ const NAV_LINK = [
 ];
 
 const Navbar = () => {
-  const { user } = useGetUserFromLocalstorage();
   const pathname = usePathname();
 
   return (
     <nav className="w-full fixed top-0 bg-neutral-950 shadow-sm flex justify-between items-center py-2 px-4 z-50">
       <Link href="/">
         <img
-          src="/angkat-logo.svg"
+          src={navbarLogo.src}
           alt="angkat logo"
           className="w-full h-8"
           height={32}
@@ -49,11 +48,7 @@ const Navbar = () => {
         ))}
       </ul>
       <div>
-        {user?.name ? (
-          <LogoutButton />
-        ) : (
-          <p className="text-white font-medium text-sm">made with ❤️</p>
-        )}
+        <LogoutButton />
       </div>
     </nav>
   );

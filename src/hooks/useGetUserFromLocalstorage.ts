@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 interface IUserLocalStorage {
   id: string;
   name: string;
@@ -9,14 +7,18 @@ interface IUserLocalStorage {
 }
 
 const useGetUserFromLocalstorage = () => {
-  const [user, setUser] = useState<IUserLocalStorage | null>(null);
+  const removeUser = () => {
+    localStorage.removeItem("user");
+  };
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    setUser(user ? JSON.parse(user) : {});
-  }, []);
+  const handleSetUser = (data: IUserLocalStorage) => {
+    localStorage.setItem("user", JSON.stringify(data));
+  };
 
-  return { user };
+  const userLocalStorage = localStorage.getItem("user");
+  const user = userLocalStorage ? JSON.parse(userLocalStorage) : null;
+
+  return { user, removeUser, handleSetUser };
 };
 
 export default useGetUserFromLocalstorage;

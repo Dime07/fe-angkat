@@ -28,7 +28,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       setToasts([...toasts, { message, type }]);
       setTimeout(() => {
         resolve();
-      }, 2000);
+      }, 500);
     });
   };
 

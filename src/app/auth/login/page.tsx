@@ -5,12 +5,15 @@ import Input from "@/app/_components/Input";
 import login from "./action";
 import { useActionState, useEffect } from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useToast } from "@/hooks/useToast";
+import { useRouter } from "next/navigation";
+import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [state, formAction] = useActionState(login, null);
   const { addToast } = useToast();
+  const { handleSetUser } = useGetUserFromLocalstorage();
 
   useEffect(() => {
     if (state) {
@@ -19,16 +22,13 @@ export default function LoginPage() {
         return;
       }
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: state.data.id,
-          name: state.data.name,
-          email: state.data.email,
-        })
-      );
+      handleSetUser({
+        id: String(state.data.id),
+        name: state.data.name,
+        email: state.data.email,
+      });
 
-      redirect("/");
+      router.push("/");
     }
   }, [state]);
 
