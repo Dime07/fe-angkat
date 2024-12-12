@@ -5,12 +5,15 @@ import Input from "@/app/_components/Input";
 import { useActionState, useEffect } from "react";
 import Link from "next/link";
 import register from "./action";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/useToast";
+import useGetUserFromLocalstorage from "@/hooks/useGetUserFromLocalstorage";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [state, formAction] = useActionState(register, null);
   const { addToast } = useToast();
+  const { handleSetUser } = useGetUserFromLocalstorage();
 
   useEffect(() => {
     if (state) {
@@ -19,20 +22,12 @@ export default function LoginPage() {
         return;
       }
 
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          id: state.data.id,
-          name: state.data.name,
-          email: state.data.email,
-        })
-      );
-      addToast({
-        message: "Register success, redirecting...",
-        type: "success",
-      }).then(() => {
-        redirect("/");
+      handleSetUser({
+        id: String(state.data.id),
+        name: state.data.name,
+        email: state.data.email,
       });
+      router.push("/");
     }
   }, [state]);
 
