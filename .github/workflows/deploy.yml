@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          path: master
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
