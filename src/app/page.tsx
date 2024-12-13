@@ -14,7 +14,7 @@ export default function Home() {
             icon="hugeicons:workout-stretching"
             className="text-primary-950 text-xl group-hover:text-white"
           />
-          Start Workout TEST
+          Start Workout
         </Button>
       </Link>
       <WorkoutList />
