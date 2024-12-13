@@ -1,9 +1,9 @@
-name: CI/CD Pipeline Angkat
+name: Deployment To Server
 
 on:
-  pull_request:
-    types: [closed]
-    branches: [master]
+  push:
+    branches:
+      - master
 
 jobs:
   deploy:
@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-        with:
-          path: master
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.3
