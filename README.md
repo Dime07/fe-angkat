@@ -1,20 +1,7 @@
 
 # Angkat 💪
-
+![Angkat Logo](https://github.com/user-attachments/assets/95978e5c-8ed8-4d21-a991-e1f86f96e773)
 **Your personal fitness hub**: Track your workouts, inspire others, and get inspired by the community. Check this out https://angkat.dime.my.id
-
-
-## Installation
-
-```bash
-  bun install
-
-  // generate prisma client
-  bunx prisma generate
-
-  // create migration
-  bunx prisma migrate
-```
     
 ## Features
 
