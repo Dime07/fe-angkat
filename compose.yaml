@@ -20,3 +20,6 @@ services:
 networks:
   angkat-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: "10.36.164.0/24"
