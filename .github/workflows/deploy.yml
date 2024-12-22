@@ -1,4 +1,4 @@
-name: CI/CD Pipeline Angkat
+name: Deployment To Server
 
 on:
   push:
