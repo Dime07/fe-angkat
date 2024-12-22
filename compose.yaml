@@ -15,11 +15,11 @@ services:
       ACCESS_TOKEN_SECRET: an9kat_s3cr3t
     networks:
       angkat-network:
-        ipv4_address: 103.139.193.143
+        ipv4_address: 10.36.164.100
 
 networks:
   angkat-network:
     driver: bridge
     ipam:
       config:
-        - subnet: "10.36.164.0/24"
+        - subnet: 10.36.164.0/24
