@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    container_name: fe-angkat-container
+    container_name: fe_angkat_container
     build:
       context: .
       args:
